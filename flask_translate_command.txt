@@ -1,0 +1,4 @@
+export FLASK_APP=microblog.py
+flask translate init zh
+flask translate update
+flask translate compile
