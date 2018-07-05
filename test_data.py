@@ -1,5 +1,6 @@
 from app import db
 from app.models import User, Post
+
 j = User(username='john', email='john@example.com')
 s = User(username='susan', email='susan@example.com')
 db.session.add(j)
@@ -28,7 +29,6 @@ print(posts)
 posts = Post.query.all()
 for p in posts:
     print(p.id, p.author.username, p.body)
-
 
 # get all users in reverse alphabetical order
 User.query.order_by(User.username.desc()).all()
