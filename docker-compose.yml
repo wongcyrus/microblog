@@ -1,0 +1,63 @@
+version: "3"
+services:
+  web:
+    image: microblog
+    deploy:
+      replicas: 2
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+    ports:
+      - 5000:5000
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      SECRET_KEY: my-secret-key
+      MAIL_SERVER: mailhog
+      MAIL_PORT: 1025
+      DATABASE_URL: mysql+pymysql://microblog:password@db/microblog
+    networks:
+      - webnet
+
+  visualizer:
+    image: dockersamples/visualizer:stable
+    ports:
+      - 8081:8080
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+    networks:
+      - webnet
+
+  db:
+    image: mysql/mysql-server:5.7
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: microblog
+      MYSQL_DATABASE: microblog
+      MYSQL_USER: microblog
+      MYSQL_PASSWORD: password
+    networks:
+      - webnet
+
+  adminer:
+    image: adminer
+    ports:
+      - 8080:8080
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+    networks:
+      - webnet
+
+  mailhog:
+    image: mailhog/mailhog:v1.0.0
+    ports:
+      - 1025:1025
+      - 8025:8025
+    networks:
+      - webnet
+
+networks:
+  webnet:

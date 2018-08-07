@@ -1,0 +1,5 @@
+sudo docker build -t microblog:latest .
+sudo docker swarm init
+sudo docker stack deploy -c docker-compose.yml microblogstack
+sudo docker stack rm microblogstack
+sudo docker swarm leave --force
