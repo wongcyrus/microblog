@@ -1,2 +1,2 @@
-# microblog
-Rework The Flask Mega-Tutorial with PyCharm
+# wikipedia
+Rebuild with PyCharm

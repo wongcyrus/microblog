@@ -1,8 +1,8 @@
 FROM python:3.6-alpine
 
-RUN adduser -D microblog
+RUN adduser -D wikipedia
 
-WORKDIR /home/microblog
+WORKDIR /home/wikipedia
 
 COPY requirements.txt requirements.txt
 RUN apk add --no-cache --update gcc musl-dev libffi-dev openssl-dev
@@ -13,13 +13,13 @@ RUN venv/bin/pip3 install gunicorn
 
 COPY app app
 COPY migrations migrations
-COPY microblog.py config.py run.py boot.sh ./
+COPY wikipedia.py config.py run.py boot.sh ./
 RUN chmod +x boot.sh
 
 ENV FLASK_APP run.py
 
-RUN chown -R microblog:microblog ./
-USER microblog
+RUN chown -R wikipedia:wikipedia ./
+USER wikipedia
 
 EXPOSE 5000
 ENTRYPOINT ["./boot.sh"]

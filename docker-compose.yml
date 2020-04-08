@@ -1,7 +1,7 @@
 version: "3"
 services:
   web:
-    image: microblog
+    image: wikipedia
     deploy:
       replicas: 2
       restart_policy:
@@ -14,7 +14,7 @@ services:
       SECRET_KEY: my-secret-key
       MAIL_SERVER: mailhog
       MAIL_PORT: 1025
-      DATABASE_URL: mysql+pymysql://microblog:password@db/microblog
+      DATABASE_URL: mysql+pymysql://wikipedia:password@db/wikipedia
     networks:
       - webnet
 
@@ -34,9 +34,9 @@ services:
     image: mysql/mysql-server:5.7
     command: --default-authentication-plugin=mysql_native_password
     environment:
-      MYSQL_ROOT_PASSWORD: microblog
-      MYSQL_DATABASE: microblog
-      MYSQL_USER: microblog
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: wikipedia
+      MYSQL_USER: wikipedia
       MYSQL_PASSWORD: password
     networks:
       - webnet

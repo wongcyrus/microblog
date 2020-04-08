@@ -23,8 +23,8 @@ msgid "Please log in to access this page."
 msgstr "Por favor ingrese para acceder a esta página."
 
 #: app/auth/email.py:9
-msgid "[Microblog] Reset Your Password"
-msgstr "[Microblog] Nueva Contraseña"
+msgid "[wikipedia] Reset Your Password"
+msgstr "[wikipedia] Nueva Contraseña"
 
 #: app/auth/forms.py:10 app/auth/forms.py:17 app/main/forms.py:10
 msgid "Username"
@@ -148,8 +148,8 @@ msgid "%(username)s said %(when)s"
 msgstr "%(username)s dijo %(when)s"
 
 #: app/templates/base.html:4
-msgid "Welcome to Microblog"
-msgstr "Bienvenido a Microblog"
+msgid "Welcome to wikipedia"
+msgstr "Bienvenido a wikipedia"
 
 #: app/templates/base.html:27
 msgid "Login"
